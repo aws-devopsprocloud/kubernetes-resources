@@ -1,0 +1,7 @@
+apiVersion: v1 
+kind: ConfigMap 
+metadata: 
+  name: devops-config 
+data: 
+  COURSE: AWS DevOps 
+  TRAINER: Prem Sagar Eri
