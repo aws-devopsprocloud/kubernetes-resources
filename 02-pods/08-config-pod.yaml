@@ -16,7 +16,7 @@ spec:
           key: COURSE
     - name: TRAINER 
       valueFrom:
-        configMapKeyRef:
+        configMapKeyRef: # We don't need to put - here because we are retrieving only a single key in devops-config 
           name: devops-config 
           key: TRAINER 
 
@@ -32,6 +32,6 @@ spec:
     ports:
     - containerPort: 80 
     envFrom: 
-      configMapKeyRef:
+    - configMapKeyRef: # We need to put - because the devops-config has multiple key-value pairs
         name: devops-config 
         
