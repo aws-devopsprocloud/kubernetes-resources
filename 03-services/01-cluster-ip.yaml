@@ -23,6 +23,6 @@ spec:
     app: nginx-cluster-ip 
     demo: service
   ports:
-    - protocol: TCP
-      port: 80 # service port 
-      targetPort: 80 # container port  
+  - protocol: TCP
+    port: 80 # service port 
+    targetPort: 80 # container port  
