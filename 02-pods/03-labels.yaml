@@ -4,7 +4,7 @@ metadata:
   name: labels-demo-pod
   labels:
     course: DevOps 
-    trainer: Prem Sagar 
+    trainer: PremSagar 
 spec: 
   containers: 
   - name: nginx 
