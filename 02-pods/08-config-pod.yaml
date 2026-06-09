@@ -20,6 +20,8 @@ spec:
           name: devops-config 
           key: TRAINER 
 
+# configMapKeyRef
+
 --- 
 apiVersion: v1 
 kind: Pod 
@@ -34,4 +36,6 @@ spec:
     envFrom: 
     - configMapRef: # We need to put - because the devops-config has multiple key-value pairs
         name: devops-config 
+
+# - configMapRef
         
