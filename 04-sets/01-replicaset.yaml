@@ -7,9 +7,10 @@ metadata:
     tier: frontend 
 spec: 
   replicas: 2 
-  matchLabels: # replicaset labels 
-    app: nginx-replicaset 
-    tier: frontend 
+  selector:
+    matchLabels: # replicaset labels 
+      app: nginx-replicaset 
+      tier: frontend 
 
   template: # Pod definition 
     metadata:
