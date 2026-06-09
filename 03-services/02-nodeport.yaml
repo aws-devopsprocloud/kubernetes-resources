@@ -1,0 +1,28 @@
+apiVersion: v1 
+kind: Pod 
+metadata:
+  name: nodeport-demo 
+  labels: 
+    app: nginx-nodeport
+    demo: service
+spec:
+  containers: 
+  - name: nginx 
+    image: nginx 
+    ports:  
+    - containerPort: 80 
+
+--- 
+apiVersion: v1 
+kind: Service 
+metadata:   
+  name: nodeport-service 
+spec: 
+  type: NodePort # We have to specify otherwise cluster IP service will be created by default 
+  selector: 
+    app: nginx-nodeport
+    demo: service 
+  ports:
+    - protocol: TCP
+      port: 80 # service port 
+      targetPort: 80 # container port 

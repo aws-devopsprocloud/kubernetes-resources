@@ -3,7 +3,7 @@ kind: Pod
 metadata: 
   name: cluster-ip-demo 
   labels: # pod labels 
-    app: nginx 
+    app: nginx-cluster-ip
     demo: service
 spec: 
   containers:
@@ -20,7 +20,7 @@ metadata:
   name: cluster-ip-service 
 spec: 
   selector: # selecting the Pod by using the same Pod labels 
-    app: nginx 
+    app: nginx-cluster-ip 
     demo: service
   ports:
     - protocol: TCP
