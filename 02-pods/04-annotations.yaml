@@ -1,0 +1,17 @@
+apiVersion: v1 
+kind: Pod 
+metadata: 
+  name: annotations-demo-pod
+  labels:
+    course: DevOps 
+    trainer: PremSagar
+  annotations:
+    com.roboshop.course: AWS DevOps
+    com.roboshop.trainer: Prem Sagar Eri 
+    com.roboshop.tratining.duration: 120 hrs 
+spec: 
+  containers: 
+  - name: nginx 
+    image: nginx 
+    ports:
+    - containerPort: 80
