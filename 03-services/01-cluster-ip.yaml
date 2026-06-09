@@ -1,10 +1,10 @@
 apiVersion: v1 
 kind: Pod 
 metadata: 
-  name: nodeport-demo 
+  name: cluster-ip-demo 
   labels: # pod labels 
     app: nginx 
-    demo: nodeport-service
+    demo: service
 spec: 
   containers:
   - name: nginx 
@@ -17,11 +17,11 @@ spec:
 apiVersion: v1 
 kind: Service 
 metadata: 
-  name: nginx-service 
+  name: cluster-ip-service 
 spec: 
   selector: # selecting the Pod by using the same Pod labels 
     app: nginx 
-    demo: nodeport-service
+    demo: service
   ports:
     - protocol: TCP
       port: 80 # service port 
