@@ -1,0 +1,15 @@
+apiVersion: v1 
+kind: Pod 
+metadata: 
+  name: environment-demo-pod
+spec: 
+  containers: 
+  - name: nginx 
+    image: nginx 
+    ports:
+    - containerPort: 80
+    env: 
+    - name: course 
+      value: AWS DevSecOps
+    - name: trainer 
+      value: Prem Sagar Eri
