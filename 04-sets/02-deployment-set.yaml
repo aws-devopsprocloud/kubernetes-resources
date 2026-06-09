@@ -1,0 +1,27 @@
+apiVersion: apps/v1 
+kind: DeploymentSet 
+metadata: 
+  name: deploymentset  # Deploymentset name 
+  labels: 
+    app: nginx-deploymentset 
+    tier: frontend 
+spec: 
+  replicas: 2 
+  selector:
+    matchLabels: # replicaset labels 
+      app: nginx-deploymentset  
+      tier: frontend 
+
+  template: # Pod definition 
+    metadata:
+      name: deploymentset-demo # Pod name
+      labels:
+        app: nginx-deploymentset 
+        tier: frontend 
+    spec: 
+      containers:
+      - name: nginx # container name
+        image: nginx 
+        ports: 
+        - containerPort: 80 
+
