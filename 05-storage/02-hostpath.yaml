@@ -4,15 +4,23 @@ metadata:
   name: hostpath 
   namespace: kube-system 
 spec: 
-  containers:
-  - name: fluentd 
-    image: fluent/fluentd:v1.16-debian-1
-    volumeMounts:
-    - name: host-logs # volume name 
-      mountPath: /host/log/ # where do you want to attach in the pod 
+  selector:
+  matchLabels: 
+    app: fluentd 
+    template:
+      metadata:
+        labels:
+          app: fluentd 
+      spec:
+        containers:
+        - name: fluentd 
+          image: fluent/fluentd:v1.16-debian-1
+          volumeMounts:
+          - name: host-logs # volume name 
+            mountPath: /host/log/ # where do you want to attach in the pod 
 
-  volumes:
-  - name: host-logs 
-    hostpoath:
-      path: /var/log
-      type: Directory
+        volumes:
+        - name: host-logs 
+          hostpoath:
+            path: /var/log
+            type: Directory
