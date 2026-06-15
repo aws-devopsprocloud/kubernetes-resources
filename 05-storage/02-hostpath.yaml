@@ -4,7 +4,6 @@ metadata:
   name: hostpath 
   namespace: kube-system 
 spec: 
-  replicas: 1 
   selector:
     matchLabels:
       app: fluentd   
