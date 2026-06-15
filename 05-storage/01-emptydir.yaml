@@ -27,13 +27,13 @@ spec:
       demo: emptydir
   template:
     metadata:
+      labels:
+          app: nginx 
+          demo: emptydir
     spec:
       containers:
       - name: nginx 
         image: nginx 
-        labels:
-          app: nginx 
-          demo: emptydir
         volumeMounts:
         - name: nginx-logs # volume name 
           mountPath: /var/log/nginx # where do you want to attach in the pod 
