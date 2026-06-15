@@ -24,6 +24,6 @@ spec:
 
       volumes:
       - name: host-logs 
-        hostpath:
+        hostPath:
           path: /var/log
           type: Directory
