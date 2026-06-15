@@ -5,12 +5,9 @@ metadata:
   namespace: kube-system 
 spec: 
   selector:
-  matchLabels: 
-    app: fluentd 
     template:
       metadata:
-        labels:
-          app: fluentd 
+        name: hostpath
       spec:
         containers:
         - name: fluentd 
