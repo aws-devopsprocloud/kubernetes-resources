@@ -19,7 +19,7 @@ spec:
         image: fluent/fluentd:v1.16-debian-1
         volumeMounts:
         - name: host-logs # volume name 
-          mountPath: /hosted/log/ # where do you want to attach in the pod 
+          mountPath: /host/log/ # where do you want to attach in the pod 
 
       volumes:
       - name: host-logs 
