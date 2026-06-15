@@ -1,0 +1,65 @@
+# Creating the PV 
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ebs-static-pv
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  csi:
+    driver: ebs.csi.aws.com
+    fsType: ext4
+    volumeHandle: vol-0f704927e9c03a280
+
+# Claiming the storage from the PV 
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ebs-static-claim
+spec:
+  storageClassName: "" # Empty string must be explicitly set otherwise default StorageClass will be set
+  volumeName: ebs-static-pv
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+
+# Attaching the PVC to the Pod 
+--- 
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx 
+  labels: 
+    demo: ebs-static
+spec:
+  containers:
+  - name: nginx 
+    image: nginx 
+    volumeMounts:
+    - name: ebs-static-storage
+      mountPath: /usr/share/nginx/html
+  volumes:
+  - name: ebs-static-storage
+    persistentVolumeClaim:
+      claimName: ebs-static claim
+
+--- 
+apiVersion: v1 
+kind: Service 
+metadata:
+  name: ebs-static-service
+spec: 
+  type: LoadBalancer 
+  selector: 
+    demo: ebs-static 
+  ports: 
+  - protocol: TCP
+    port: 80 # service port 
+    targetPort: 80 # container port 
