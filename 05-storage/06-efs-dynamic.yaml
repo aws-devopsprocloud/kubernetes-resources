@@ -1,0 +1,28 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: efs-dynamic-claim
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: efs-sc-roboshop
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: efs-dynamic-app
+spec:
+  containers:
+    - name: nginx
+      image: nginx 
+      volumeMounts:
+        - name: efs-dynamic
+          mountPath: /usr/share/nginx/html
+  volumes:
+    - name: efs-dynamic 
+      persistentVolumeClaim:
+        claimName: efs-dynamic-claim
