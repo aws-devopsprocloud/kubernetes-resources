@@ -12,7 +12,7 @@ spec:
   csi:
     driver: ebs.csi.aws.com
     fsType: ext4
-    volumeHandle: vol-0f704927e9c03a280
+    volumeHandle: vol-0d5763459a7a4ece9
 
 # Claiming the storage from the PV 
 ---
