@@ -1,0 +1,62 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata: 
+  name: nginx-hpa  # Deploymentset name 
+  labels: 
+    app: nginx-hpa 
+    tier: frontend 
+spec: 
+  replicas: 2 
+  selector:
+    matchLabels: # replicaset labels 
+      app: nginx-hpa  
+      tier: frontend 
+
+  template: # Pod definition 
+    metadata:
+      name: nginx-hpa # Pod name# ACTUAL POD NAME WILL BE DIFFERENT AFTER Kubectl apply
+      labels:
+        app: nginx-hpa 
+        tier: frontend 
+    spec: 
+      containers:
+      - name: nginx # container name 
+        image: nginx
+        ports: 
+        - containerPort: 80 
+
+--- 
+
+apiVersion: v1 
+kind: Service 
+metadata: 
+  name: nginx-clusterip 
+spec: 
+  selector: # selecting the Pod by using the same Pod labels 
+    app: nginx-hpa  
+    tier: frontend 
+  ports:
+  - protocol: TCP
+    port: 80 # service port 
+    targetPort: 80 # container port  
+
+--- 
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: nginx-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nginx-hpa
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 2
