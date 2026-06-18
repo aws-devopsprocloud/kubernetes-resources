@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Pod 
 metadata: 
   name: sample-pod 
-  namespace: roboshop # We can give the name space 
+  # namespace: roboshop # We can give the name space 
 spec:
   containers: 
   - name: nginx 
