@@ -32,6 +32,7 @@ kind: Service
 metadata: 
   name: nginx-clusterip 
 spec: 
+  type: LoadBalancer
   selector: # selecting the Pod by using the same Pod labels 
     app: nginx-deploymentset 
     tier: frontend 
